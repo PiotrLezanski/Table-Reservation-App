@@ -1,0 +1,123 @@
+# Maven specific
+/target/
+mvnw
+mvnw.cmd
+.mvn/
+
+# Java-specific
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA specific
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse specific
+.settings/
+.classpath
+.project
+.metadata/
+
+# Vaadin specific
+npm-debug.log
+node_modules/
+.flow/
+target/
+build/
+
+# macOS-specific
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary files
+*.swp
+
+# User-specific IDE settings
+.vscode/
+.settings/
+
+# Gradle specific
+.gradle/
+build/
+out/
+
+# OS-specific files and directories
+Desktop.ini
+Thumbs.db
+.DS_Store
+
+# Compiled files
+*.o
+*.lo
+*.la
+*.al
+*.libs
+*.so
+*.so.[0-9]*
+*.a
+*.pyc
+*.pyo
+__pycache__/
+*.rej
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Binary files
+*.bin
+*.out
+*.class
+
+# Images and videos
+*.jpg
+*.jpeg
+*.gif
+*.png
+*.bmp
+*.ico
+*.webp
+*.svg
+*.mpg
+*.flv
+*.avi
+*.mov
+*.wmv
+*.mp4
+*.mkv
+
+# Fonts
+*.eot
+*.ttf
+*.woff
+
+# Executables
+*.exe
+*.com
+*.dll
+*.bat
+*.msi
+*.sys
+*.log
+*.cgi
+*.jsp
+*.asp
+*.war
+*.map
