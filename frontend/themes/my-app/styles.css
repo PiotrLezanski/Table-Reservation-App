@@ -1,0 +1,49 @@
+html
+{
+    --lumo-font-family: 'Segoe UI Emoji';
+    --lumo-primary-color: #39ab82;
+    --lumo-primary-color-50pct: #2f9671;
+    --lumo-primary-color-10pct: #0c4935;
+    --lumo-primary-text-color: #36ad82;
+}
+
+body {
+}
+
+a[highlight]
+{
+    font-weight: bold;
+    /*text-decoration: underline;*/
+}
+
+:host([theme~="white"]) [theme~="dark"] {
+    color: white;
+}
+.home-page {
+    background: url('./images/restaurant_background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+.mint-button {
+    background-color: #39ab82;
+    color: #ffffff;
+    border: 2px solid #309b75;
+    padding: 18px 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.mint-border-button {
+    background-color: #ffffff;
+    color: #39ab82;
+    border: 2px solid #39ab82;
+    padding: 18px 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.white_background_button
+{
+    background-color: white;
+}

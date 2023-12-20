@@ -1,10 +1,13 @@
-package com.example.application;
+package com.example.application.globals;
 
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 
 public class Globals 
 {
+    // main color: #39ab82
+    public static final String appName = "Foodie";
+    
     public static void showPopup(String message, NotificationVariant variant, Notification.Position position)
     {
         final int NOTIFICATION_DURATION = 2500;

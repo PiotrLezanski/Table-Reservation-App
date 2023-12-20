@@ -1,5 +1,6 @@
-package com.example.application.views.login;
+package com.example.application.views.global;
 
+import com.example.application.globals.Globals;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -30,13 +31,12 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener
     {
         loginForm.setForgotPasswordButtonVisible(true);
         loginForm.setAction("login");
-        loginForm.setError(false);
         
         createAccountButton = new Button("Create Account", this::createAccountButtonClicked);
         createAccountButton.addThemeVariants(ButtonVariant.MATERIAL_OUTLINED);
         
         add(
-                new H1("Welcome to Table Reservation App!"),
+                new H1("Welcome to " + Globals.appName + "!"),
                 loginForm,
                 createAccountButton
         );
