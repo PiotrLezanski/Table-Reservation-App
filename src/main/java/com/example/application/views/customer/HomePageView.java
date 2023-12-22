@@ -39,7 +39,7 @@ public class HomePageView extends VerticalLayout
         H1 welcomeText = new H1("Welcome to " + Globals.appName + "!");
         welcomeText.getStyle().set("color", "white");
         
-        H2 alias = new H2("App to reserve table in your favourite restaurant!");
+        H2 alias = new H2("App to reserve table in your favourite restaurant");
         alias.getStyle().set("color", "white");
 
         Button learnMoreButton = new Button("Search the list", this::searchTheListButtonClicked);

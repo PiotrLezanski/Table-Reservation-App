@@ -58,7 +58,7 @@ public class CustomerSignUpView extends VerticalLayout implements ISignUpView
 
         usernameField = new TextField("Username");
         
-        emailField = new EmailField("Email address");
+        emailField = new EmailField("Email Address");
         emailField.setPlaceholder("your_mail@example.com");
         
         passwordField = new PasswordField("Password");
@@ -68,7 +68,7 @@ public class CustomerSignUpView extends VerticalLayout implements ISignUpView
         signUpButton.getStyle().set("margin-top", "20px");
 
         backButton = new Button("back", new Icon(VaadinIcon.ARROW_LEFT), this::backButtonClicked);
-        backButton.setClassName("white_background_button");
+        backButton.setClassName("transparent_background_button");
     }
 
     private void configureUI()

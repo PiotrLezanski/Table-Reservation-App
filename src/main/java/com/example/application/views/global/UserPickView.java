@@ -52,12 +52,12 @@ public class UserPickView extends VerticalLayout {
         backButton = new Button("Back", new Icon(VaadinIcon.ARROW_LEFT), this::backButtonClicked);
         backButton.setIconAfterText(false);
         backButton.setAutofocus(false);
-        backButton.setClassName("white_background_button");
+        backButton.setClassName("transparent_background_button");
         
         goButton = new Button("Go", new Icon(VaadinIcon.ARROW_RIGHT), this::goButtonClicked);
         goButton.setIconAfterText(true);
         goButton.setAutofocus(true);
-        goButton.setClassName("white_background_button");
+        goButton.setClassName("transparent_background_button");
     }
 
     private void backButtonClicked(ClickEvent<Button> buttonClickEvent)

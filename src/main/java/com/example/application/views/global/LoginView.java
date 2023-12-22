@@ -44,7 +44,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener
     
     private void createAccountButtonClicked(ClickEvent<Button> clicked)
     {
-        loginForm.setVisible(false);
         UI.getCurrent().navigate(UserPickView.class);
     }
     

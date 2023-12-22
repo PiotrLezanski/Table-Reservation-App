@@ -29,6 +29,7 @@ a[highlight]
     background-color: #39ab82;
     color: #ffffff;
     border: 2px solid #309b75;
+    border-radius: 12px;
     padding: 18px 25px;
     font-size: 16px;
     cursor: pointer;
@@ -43,7 +44,7 @@ a[highlight]
     cursor: pointer;
 }
 
-.white_background_button
+.transparent_background_button
 {
-    background-color: white;
+    background-color: transparent;
 }
