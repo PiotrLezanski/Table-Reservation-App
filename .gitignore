@@ -121,3 +121,6 @@ __pycache__/
 *.asp
 *.war
 *.map
+
+# No need to track
+frontend/generated/
