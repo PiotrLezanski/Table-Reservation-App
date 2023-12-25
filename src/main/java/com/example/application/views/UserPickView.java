@@ -1,4 +1,4 @@
-package com.example.application.views.global;
+package com.example.application.views;
 
 import com.example.application.globals.Globals;
 import com.example.application.globals.UserType;

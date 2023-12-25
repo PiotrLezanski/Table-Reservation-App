@@ -59,7 +59,7 @@ public class MainMenuView extends AppLayout
     
     private void initializeSideMenu()
     {
-//        setDrawerOpened(false);
+        setDrawerOpened(false);
         
         RouterLink welcomePageLink = new RouterLink("Home Page", HomePageView.class);
         RouterLink aboutusPageLink = new RouterLink("About Us", AboutUsView.class);

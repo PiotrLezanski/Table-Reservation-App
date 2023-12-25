@@ -1,4 +1,4 @@
-package com.example.application.views.global;
+package com.example.application.views;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;

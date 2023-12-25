@@ -1,7 +1,7 @@
 package com.example.application.views.owner;
 
 import com.example.application.globals.Globals;
-import com.example.application.views.global.ISignUpView;
+import com.example.application.views.ISignUpView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
