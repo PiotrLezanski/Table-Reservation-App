@@ -123,4 +123,4 @@ __pycache__/
 *.map
 
 # No need to track
-frontend/generated/
+/frontend/generated/
