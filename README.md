@@ -1,18 +1,42 @@
-# Flow CRM Tutorial
+# Foodie
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+your go-to app for crafting the perfect dining experience.
 
-## Running the application
+## Description
+
+Say farewell to the era of booking tables via phone and anxiously waiting for a waiter's response – with Foodie, the dining game has evolved.
+Now, securing a table at your favorite restaurant is a breeze, putting you in control of when, where, and how you indulge in your gastronomic delights.
+
+Key Features:
+
+📅 Effortless Reservations: No more long queues or uncertainty. Foodie empowers you to effortlessly secure a table at your preferred restaurant, 
+ensuring that your dining plans align with your schedule.
+
+🌟 Table Tailoring: Immerse yourself in the dining ambiance you crave. Foodie lets you pick your preferred table, whether it's a cozy corner for an intimate date or a lively spot for a group celebration. Your perfect setting, your way.
+
+🕰️ Time Precision: Time is a precious commodity, and Foodie respects that. Specify the exact time you want to dine, and witness the magic as your chosen restaurant prepares to welcome you at your preferred hour.
+
+🎁 Exclusive Additions: Elevate your Foodie experience with exclusive perks! Enjoy personalized recommendations based on your taste preferences, unlock special offers from partner restaurants, and get a sneak peek at mouthwatering menu highlights before you even set foot in the door.
+
+👨‍💼 Adding Your Restaurant: If you are a restaurant owner and want to add your place to Foodie, you can do this very easily! Just create a "Restaurant Owner" account on our site and let a broader audience savor the exceptional experience you have to offer..
+
+🤩 Something Extra: Foodie goes beyond the ordinary, adding that extra dash of delight to your culinary journey. Whether it's surprise discounts, chef's specials, or insider tips, Foodie keeps the excitement alive with every reservation.
+
+Download Foodie now and transform your dining escapades into unforgettable experiences. <br> 
+Because every meal should be a celebration, and with Foodie, you're always at the head of the table. <br> 
+Bon appétit! 🎉
+
+## Boring stuff for developers
+
+### Running the application
 
 The project is a standard Maven project. To run it from the command line,
 type `mvnw` (Windows), or `./mvnw` (Mac & Linux), then open
 http://localhost:8080 in your browser.
 
-You can also import the project to your IDE of choice as you would with any
-Maven project. Read more on [how to import Vaadin projects to different IDEs](https://vaadin.com/docs/latest/guide/step-by-step/importing) (Eclipse, IntelliJ IDEA, NetBeans, and VS Code).
+You can also import the project to your IDE of choice as you would with any Maven project.
 
-## Deploying to Production
+### Deploying to Production
 
 To create a production build, call `mvnw clean package -Pproduction` (Windows),
 or `./mvnw clean package -Pproduction` (Mac & Linux).
@@ -22,30 +46,14 @@ ready to be deployed. The file can be found in the `target` folder after the bui
 Once the JAR file is built, you can run it using
 `java -jar target/my-app-1.0-SNAPSHOT.jar`
 
-## Project structure
+### Project structure
 
 - `MainLayout.java` in `src/main/java` contains the navigation setup (i.e., the
   side/top bar and the main menu). This setup uses
-  [App Layout](https://vaadin.com/docs/components/app-layout).
 - `views` package in `src/main/java` contains the server-side Java views of your application.
-- `views` folder in `frontend/` contains the client-side JavaScript views of your application.
 - `themes` folder in `frontend/` contains the custom CSS styles.
 
-## Useful links
-
-- Read the documentation at [vaadin.com/docs](https://vaadin.com/docs).
-- Follow the tutorial at [vaadin.com/docs/latest/tutorial/overview](https://vaadin.com/docs/latest/tutorial/overview).
-- Create new projects at [start.vaadin.com](https://start.vaadin.com/).
-- Search UI components and their usage examples at [vaadin.com/docs/latest/components](https://vaadin.com/docs/latest/components).
-- View use case applications that demonstrate Vaadin capabilities at [vaadin.com/examples-and-demos](https://vaadin.com/examples-and-demos).
-- Build any UI without custom CSS by discovering Vaadin's set of [CSS utility classes](https://vaadin.com/docs/styling/lumo/utility-classes). 
-- Find a collection of solutions to common use cases at [cookbook.vaadin.com](https://cookbook.vaadin.com/).
-- Find add-ons at [vaadin.com/directory](https://vaadin.com/directory).
-- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
-- Report issues, create pull requests in [GitHub](https://github.com/vaadin).
-
-
-## Deploying using Docker
+### Deploying using Docker
 
 To build the Dockerized version of the project, run
 
