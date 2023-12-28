@@ -7,6 +7,8 @@ public class Globals
 {
     // main color: #39ab82
     public static final String appName = "Foodie";
+    public static final String mainColor = "#39ab82";
+    public static final String secondaryColor = "#B4FAFA";
     
     public static void showPopup(String message, NotificationVariant variant, Notification.Position position)
     {

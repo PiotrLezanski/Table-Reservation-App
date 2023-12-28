@@ -44,7 +44,13 @@ a[highlight]
     cursor: pointer;
 }
 
-.transparent_background_button
+.transparent-background-button
 {
     background-color: transparent;
+}
+
+.about-us
+{
+    background: url('./images/about_us_background2.png') no-repeat center center;
+    background-size: cover;
 }

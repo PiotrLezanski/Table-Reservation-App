@@ -88,7 +88,7 @@ public class OwnerSignUpView extends VerticalLayout implements ISignUpView
         signUpButton.getStyle().set("margin-top", "20px");
 
         backButton = new Button("back", new Icon(VaadinIcon.ARROW_LEFT), this::backButtonClicked);
-        backButton.setClassName("transparent_background_button");
+        backButton.setClassName("transparent-background-button");
     }
     
     private void initializeRestaurantInfoForm()

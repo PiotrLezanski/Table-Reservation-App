@@ -10,9 +10,11 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 import jakarta.annotation.security.PermitAll;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @PermitAll
 public class MainMenuView extends AppLayout
@@ -39,7 +41,7 @@ public class MainMenuView extends AppLayout
         
         Button logoutButton = new Button("Log out", e -> securityService.logout());
         logoutButton.getStyle().set("margin-right", "15px");
-        logoutButton.setClassName("transparent_background_button");
+        logoutButton.setClassName("transparent-background-button");
         
         HorizontalLayout headerLayout = new HorizontalLayout(
                 new DrawerToggle(),
@@ -59,19 +61,30 @@ public class MainMenuView extends AppLayout
     
     private void initializeSideMenu()
     {
+        // by default menu is closed
         setDrawerOpened(false);
         
-        RouterLink welcomePageLink = new RouterLink("Home Page", HomePageView.class);
-        RouterLink aboutusPageLink = new RouterLink("About Us", AboutUsView.class);
-        RouterLink restaurantListPageLink = new RouterLink("Restaurants", RestaurantListView.class);
+        var routerLinks = createRouterLinks();
         
-        welcomePageLink.setHighlightCondition(HighlightConditions.sameLocation());
+        var verticalLayout = new VerticalLayout();
+        verticalLayout.getStyle().set("font-size", "1.2em");
         
-        addToDrawer(new VerticalLayout(
-                    welcomePageLink,
-                    aboutusPageLink,
-                    restaurantListPageLink
-                )
-        );
+        for(var link : routerLinks)
+        {
+            verticalLayout.add(link);
+        }
+        
+        addToDrawer(verticalLayout);
+    }
+    
+    private List<RouterLink> createRouterLinks()
+    {
+        List<RouterLink> routerLinks = new ArrayList<>();
+        
+        routerLinks.add(new RouterLink("Home Page", HomePageView.class));
+        routerLinks.add(new RouterLink("About Us", AboutUsView.class));
+        routerLinks.add(new RouterLink("Restaurants", RestaurantListView.class));
+        
+        return routerLinks;
     }
 }

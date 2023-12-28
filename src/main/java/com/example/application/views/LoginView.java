@@ -39,7 +39,6 @@ public class LoginView extends LoginOverlay implements AfterNavigationObserver, 
         
         setI18n(loginForm);
         setAction("login");
-//        setOpened(true);
     }
     
     private void createAccountButtonClicked()
@@ -58,6 +57,4 @@ public class LoginView extends LoginOverlay implements AfterNavigationObserver, 
     {
         setError(event.getLocation().getQueryParameters().getParameters().containsKey("error"));
     }
-    
-    private LoginI18n loginForm;
 }
