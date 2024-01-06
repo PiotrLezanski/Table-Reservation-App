@@ -1,7 +1,7 @@
-package com.example.application.views;
+package com.example.application.UI;
 
-import com.example.application.views.customer.CustomerSignUpView;
-import com.example.application.views.owner.OwnerSignUpView;
+import com.example.application.UI.customer.CustomerSignUpView;
+import com.example.application.UI.owner.OwnerSignUpView;
 
 public class SignUpViewFactory
 {

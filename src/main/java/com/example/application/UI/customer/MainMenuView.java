@@ -1,4 +1,4 @@
-package com.example.application.views.customer;
+package com.example.application.UI.customer;
 
 import com.example.application.globals.Globals;
 import com.example.application.security.SecurityService;
@@ -67,7 +67,7 @@ public class MainMenuView extends AppLayout
         var routerLinks = createRouterLinks();
         
         var verticalLayout = new VerticalLayout();
-        verticalLayout.getStyle().set("font-size", "1.2em");
+        verticalLayout.getStyle().set("font-size", "1.1em");
         
         for(var link : routerLinks)
         {

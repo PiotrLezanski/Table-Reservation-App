@@ -1,4 +1,4 @@
-package com.example.application.views.customer;
+package com.example.application.UI.customer;
 
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
