@@ -53,7 +53,7 @@ public class AboutUsView extends VerticalLayout
                 "Say farewell to the era of booking tables via phone and anxiously waiting for a waiter's response – with Foodie, the dining game has evolved. " +
                         "Now, securing a table at your favorite restaurant is a breeze, putting you in control of when, where, and how you indulge in your gastronomic delights."
         );
-        description.getElement().getStyle().set("font-size", "1.3em");
+        description.getElement().getStyle().set("font-size", "1.2em");
 
         Div keyFeatures = new Div(
                 new Paragraph("Key Features:"),
@@ -68,7 +68,7 @@ public class AboutUsView extends VerticalLayout
                 new Paragraph("Because every meal should be a celebration, and with Foodie, you're always at the head of the table."),
                 new Paragraph("Bon appétit! 🎉")
         );
-        keyFeatures.getStyle().set("font-size", "1.3em");
+        keyFeatures.getStyle().set("font-size", "1.2em");
         
         descriptionLayout.add(description, keyFeatures);
     }

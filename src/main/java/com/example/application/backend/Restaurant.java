@@ -1,27 +1,26 @@
 package com.example.application.backend;
 
 import com.example.application.globals.RestaurantType;
-import com.helger.commons.annotation.Nonempty;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Restaurant extends AbstractEntity
 {
-    @Nonempty
     private String name = "";
-    
-    @Nonempty
+    private String description = "";
     private String address = "";
-    
-//    @ManyToOne
+
     private RestaurantType type;
+    private String imageUrl;
 
     public Restaurant() {}
-    public Restaurant(String name, String address, RestaurantType type)
+    public Restaurant(String name, String description, String address, RestaurantType type, String imageUrl)
     {
         this.name = name;
+        this.description = description;
         this.address = address;
         this.type = type;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -32,6 +31,14 @@ public class Restaurant extends AbstractEntity
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public String getAddress() {
         return address;
     }
@@ -46,5 +53,13 @@ public class Restaurant extends AbstractEntity
 
     public void setType(RestaurantType type) {
         this.type = type;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

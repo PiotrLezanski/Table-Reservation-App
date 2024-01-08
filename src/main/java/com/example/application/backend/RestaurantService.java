@@ -13,9 +13,6 @@ import java.util.logging.Logger;
 @Service
 public class RestaurantService
 {
-    private static final Logger LOGGER = Logger.getLogger(Restaurant.class.getName());
-    private RestaurantRepository restaurantRepository;
-
     public RestaurantService(RestaurantRepository restaurantRepository)
     {
         this.restaurantRepository = restaurantRepository;
@@ -24,6 +21,13 @@ public class RestaurantService
     public List<Restaurant> findAll()
     {
         return restaurantRepository.findAll();
+    }
+
+    public List<Restaurant> findAll(String text)
+    {
+        if(text == null || text.isEmpty())
+            return findAll();
+        return restaurantRepository.filter(text);
     }
     
     public long count()
@@ -46,13 +50,12 @@ public class RestaurantService
         restaurantRepository.save(restaurant);
     }
     
-    // testing without database connection
+    // delete after database conection
     @PostConstruct
     public void populateTestData()
     {
         if(restaurantRepository.count() == 0)
         {
-            List<Restaurant> restaurants = restaurantRepository.findAll();
             restaurantRepository.saveAll(generateTestRestaurants());
         }
     }
@@ -61,27 +64,30 @@ public class RestaurantService
     {
         Random r = new Random(0);
         List<Restaurant> restaurants = new ArrayList<>();
-        restaurants.add(new Restaurant("Delizioso Trattoria", "123 Pasta Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Quick Bites Express", "456 Fast Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Soy Sauce Sensations", "789 Wok Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Olive Grove Mediterranean", "101 Olive Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Taco Time Fiesta", "202 Salsa Boulevard", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Classic Diner Delights", "303 Pancake Drive", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Ocean Fresh Seafood", "404 Pier Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Green Leaf Vegan Haven", "505 Sprout Court", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Aroma Roast Coffee", "606 Bean Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Global Fusion Flavors", "707 Fusion Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Street Eats Food Truck", "808 Mobile Drive", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Epicurean Excellence", "909 Gourmet Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Morning Sunshine Café", "1010 Sunrise Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Sweet Indulgence Bakery", "1111 Sugar Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Fresh Start Health Cafe", "1212 Wellness Drive", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Pub Grub Paradise", "1313 Ale Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Family Feast Haven", "1414 Harmony Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Buffet Bonanza", "1515 Feast Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Swift Delivery Delights", "1616 Express Boulevard", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
-        restaurants.add(new Restaurant("Ethnic Eats Explorer", "1717 Cultural Court", RestaurantType.values()[r.nextInt(RestaurantType.values().length)]));
+        restaurants.add(new Restaurant("Delizioso Trattoria", "short description", "123 Pasta Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Quick Bites Express", "short description", "456 Fast Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Soy Sauce Sensations", "short description", "789 Wok Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Olive Grove Mediterranean", "short description", "101 Olive Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Taco Time Fiesta", "short description", "202 Salsa Boulevard", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Classic Diner Delights", "short description", "303 Pancake Drive", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Ocean Fresh Seafood", "short description", "404 Pier Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Green Leaf Vegan Haven", "short description", "505 Sprout Court", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Aroma Roast Coffee", "short description", "606 Bean Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Global Fusion Flavors", "short description", "707 Fusion Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Street Eats Food Truck", "short description", "808 Mobile Drive", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Epicurean Excellence", "short description", "909 Gourmet Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Morning Sunshine Café", "short description", "1010 Sunrise Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Sweet Indulgence Bakery", "short description", "1111 Sugar Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Fresh Start Health Cafe", "short description", "1212 Wellness Drive", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Pub Grub Paradise", "short description", "1313 Ale Avenue", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Family Feast Haven", "short description", "1414 Harmony Lane", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Buffet Bonanza", "short description", "1515 Feast Street", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Swift Delivery Delights", "short description", "1616 Express Boulevard", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
+        restaurants.add(new Restaurant("Ethnic Eats Explorer", "short description", "1717 Cultural Court", RestaurantType.values()[r.nextInt(RestaurantType.values().length)], "https://picsum.photos/200"));
         
         return restaurants;
     }
+
+    private static final Logger LOGGER = Logger.getLogger(Restaurant.class.getName());
+    private RestaurantRepository restaurantRepository;
 }
