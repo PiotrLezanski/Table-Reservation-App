@@ -1,5 +1,6 @@
 package com.example.application.UI.customer;
 
+import com.example.application.UI.IView;
 import com.example.application.globals.Globals;
 import com.example.application.security.SecurityService;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @PermitAll
-public class MainMenuView extends AppLayout
+public class MainMenuView extends AppLayout implements IView
 {
     private SecurityService securityService;
     
@@ -25,6 +26,26 @@ public class MainMenuView extends AppLayout
     {
         this.securityService = securityService;
         
+        initializeView();
+        configureUI();
+    }
+
+    @Override
+    public void configureUI()
+    {
+        headerLayout.setWidthFull();
+        headerLayout.expand(text);
+
+        headerLayout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+        headerLayout.addClassNames("py-10");
+
+        logoutButton.getStyle().set("margin-right", "15px");
+        logoutButton.setClassName("transparent-background-button");
+    }
+
+    @Override
+    public void initializeView()
+    {
         initializeHeader();
         initializeSideMenu();
     }
@@ -36,25 +57,17 @@ public class MainMenuView extends AppLayout
         logo.setHeight("45px");
         logo.addClassNames("mx-s", "my-s");
 
-        H5 text = new H5("x");
+        text = new H5("x");
         text.getStyle().set("color", "transparent");
         
-        Button logoutButton = new Button("Log out", e -> securityService.logout());
-        logoutButton.getStyle().set("margin-right", "15px");
-        logoutButton.setClassName("transparent-background-button");
+        logoutButton = new Button("Log out", e -> securityService.logout());
         
-        HorizontalLayout headerLayout = new HorizontalLayout(
+        headerLayout = new HorizontalLayout(
                 new DrawerToggle(),
                 logo,
                 text,
                 logoutButton
         );
-        
-        headerLayout.setWidthFull();
-        headerLayout.expand(text);
-        
-        headerLayout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
-        headerLayout.addClassNames("py-10");
         
         addToNavbar(headerLayout);
     }
@@ -87,4 +100,8 @@ public class MainMenuView extends AppLayout
         
         return routerLinks;
     }
+
+    private H5 text;
+    private Button logoutButton;
+    private HorizontalLayout headerLayout;
 }

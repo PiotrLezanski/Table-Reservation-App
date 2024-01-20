@@ -1,5 +1,6 @@
 package com.example.application.UI.customer;
 
+import com.example.application.UI.IView;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
@@ -12,7 +13,7 @@ import jakarta.annotation.security.PermitAll;
 @PageTitle("about us")
 @Route(value = "about-us", layout = MainMenuView.class)
 @PermitAll
-public class AboutUsView extends VerticalLayout
+public class AboutUsView extends VerticalLayout implements IView
 {
     public AboutUsView()
     {
@@ -20,7 +21,8 @@ public class AboutUsView extends VerticalLayout
         initializeView();
     }
     
-    private void configureUI()
+    @Override
+    public void configureUI()
     {
         setMargin(false);
         setPadding(false);
@@ -29,7 +31,8 @@ public class AboutUsView extends VerticalLayout
         setJustifyContentMode(JustifyContentMode.CENTER);
     }
     
-    private void initializeView()
+    @Override
+    public void initializeView()
     {
         Image mainImage = new Image("images/about_us_background.png", "Get to know Foodie better!");
         mainImage.setSizeFull();

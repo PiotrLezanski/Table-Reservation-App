@@ -6,18 +6,12 @@ import jakarta.persistence.Entity;
 @Entity
 public class Restaurant extends AbstractEntity
 {
-    private String name = "";
-    private String description = "";
-    private String address = "";
-
-    private RestaurantType type;
-    private String imageUrl;
-
     public Restaurant() {}
-    public Restaurant(String name, String description, String address, RestaurantType type, String imageUrl)
+    public Restaurant(String name, String description, String city, String address, RestaurantType type, String imageUrl)
     {
         this.name = name;
         this.description = description;
+        this.city = city;
         this.address = address;
         this.type = type;
         this.imageUrl = imageUrl;
@@ -37,6 +31,14 @@ public class Restaurant extends AbstractEntity
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
     
     public String getAddress() {
@@ -62,4 +64,13 @@ public class Restaurant extends AbstractEntity
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    private String name = "";
+    private String description = "";
+    private String city = "";
+    private String address = "";
+
+    private RestaurantType type;
+
+    private String imageUrl;
 }

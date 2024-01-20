@@ -28,6 +28,9 @@ Bon appétit! 🎉
 
 ## Boring stuff for developers
 
+### UML
+[FoodieApp_UML.pdf](..%2F..%2FFoodieApp_UML.pdf)
+
 ### Running the application
 
 The project is a standard Maven project. To run it from the command line,

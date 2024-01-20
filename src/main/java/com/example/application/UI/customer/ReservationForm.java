@@ -1,6 +1,8 @@
 package com.example.application.UI.customer;
 
+import com.example.application.UI.IView;
 import com.example.application.backend.Restaurant;
+import com.example.application.backend.converters.EnumToStringConverter;
 import com.example.application.globals.RestaurantType;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -12,54 +14,64 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.timepicker.TimePicker;
-import com.vaadin.flow.data.binder.*;
-import com.vaadin.flow.data.converter.Converter;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.shared.Registration;
 
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class ReservationForm extends FormLayout
+public class ReservationForm extends FormLayout implements IView
 {
     public ReservationForm()
+    {
+        initializeView();
+        configureUI();
+    }
+    
+    @Override
+    public void configureUI()
+    {
+        text.getStyle().set("color", "#39ab82");
+        
+        name.setReadOnly(true);
+        description.setReadOnly(true);
+        city.setReadOnly(true);
+        address.setReadOnly(true);
+        type.setReadOnly(true);
+    }
+
+    @Override
+    public void initializeView() 
     {
         binder.forField(type)
                 .withConverter(new EnumToStringConverter<>(RestaurantType.class))
                 .bind("type");
         binder.bindInstanceFields(this);
-        
+
         configureDateAndTimePicker();
         configureButtons();
-        
+
         HorizontalLayout timeLayout = new HorizontalLayout(datePicker, timePicker);
-        
+
         HorizontalLayout buttonsLayout = new HorizontalLayout(makeReservationButton,
-                                                            cancelReservationButton,
-                                                            closeButton);
+                cancelReservationButton,
+                closeButton);
         buttonsLayout.getStyle().set("margin-top", "20px");
         
-        configureUI();
         add(
                 text,
                 name,
                 description,
+                city,
                 address,
                 type,
                 timeLayout,
                 buttonsLayout
         );
     }
-    
-    private void configureUI()
-    {
-        text.getStyle().set("color", "#39ab82");
-        
-        name.setReadOnly(true);
-        description.setReadOnly(true);
-        address.setReadOnly(true);
-        type.setReadOnly(true);
-    }
-    
+
     private void configureButtons()
     {
         makeReservationButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -108,6 +120,7 @@ public class ReservationForm extends FormLayout
     private H2 text = new H2("Book your table here");
     private TextField name = new TextField("Name");
     private TextField description = new TextField("Description");
+    private TextField city = new TextField("City");
     private TextField address = new TextField("Address");
     private TextField type = new TextField("Type");
     
@@ -164,28 +177,5 @@ public class ReservationForm extends FormLayout
     }
     public Registration addCloseListener(ComponentEventListener<CloseEvent> listener) {
         return addListener(CloseEvent.class, listener);
-    }
-}
-
-class EnumToStringConverter<T extends Enum<T>> implements Converter<String, T> {
-
-    private final Class<T> enumType;
-
-    public EnumToStringConverter(Class<T> enumType) {
-        this.enumType = enumType;
-    }
-
-    @Override
-    public Result<T> convertToModel(String value, ValueContext context) {
-        try {
-            return Result.ok(Enum.valueOf(enumType, value));
-        } catch (IllegalArgumentException e) {
-            return Result.error("Invalid value");
-        }
-    }
-
-    @Override
-    public String convertToPresentation(T value, ValueContext context) {
-        return value != null ? value.name() : null;
     }
 }

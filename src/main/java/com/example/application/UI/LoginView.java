@@ -8,15 +8,23 @@ import com.vaadin.flow.router.*;
 
 @Route("login")
 @PageTitle("Login | Table Reservation App")
-public class LoginView extends LoginOverlay implements AfterNavigationObserver, BeforeEnterObserver
+public class LoginView extends LoginOverlay implements IView, AfterNavigationObserver, BeforeEnterObserver
 {
     public LoginView()
     {
+        configureUI();
+        initializeView();
+    }
+
+    @Override
+    public void configureUI()
+    {
         addClassName("login-view");
-        initializeLoginView();
+        setAction("login");
     }
     
-    private void initializeLoginView()
+    @Override
+    public void initializeView()
     {
         var loginForm = LoginI18n.createDefault();
 
@@ -34,11 +42,10 @@ public class LoginView extends LoginOverlay implements AfterNavigationObserver, 
 
         loginForm.getForm().setForgotPassword("Create Account");
         setForgotPasswordButtonVisible(true);
-    
+
         addForgotPasswordListener(forgotPasswordEvent -> createAccountButtonClicked());
-        
+
         setI18n(loginForm);
-        setAction("login");
     }
     
     private void createAccountButtonClicked()

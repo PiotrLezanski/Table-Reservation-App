@@ -1,5 +1,6 @@
 package com.example.application.UI.customer;
 
+import com.example.application.UI.IView;
 import com.example.application.backend.Restaurant;
 import com.example.application.backend.RestaurantService;
 import com.vaadin.flow.component.Component;
@@ -16,7 +17,7 @@ import jakarta.annotation.security.PermitAll;
 @PageTitle("restaurants")
 @Route(value = "restaurants", layout = MainMenuView.class)
 @PermitAll
-public class RestaurantListView extends VerticalLayout
+public class RestaurantListView extends VerticalLayout implements IView
 {
     public RestaurantListView(RestaurantService restaurantService)
     {
@@ -27,12 +28,16 @@ public class RestaurantListView extends VerticalLayout
         closeReservationForm();
         
         add(
-                filteredText,
+                new HorizontalLayout(
+                        filteredByNameTextField,
+                        filteredByCityTextField
+                ),
                 createGridFormComponent()
         );
     }
 
-    private void configureUI()
+    @Override
+    public void configureUI()
     {
         setSizeFull();
         configureGrid();
@@ -41,7 +46,7 @@ public class RestaurantListView extends VerticalLayout
     private void configureGrid()
     {
         grid.setSizeFull();
-        grid.setColumns("name", "address", "type");
+        grid.setColumns("name", "city", "address", "type");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
         
         prev = null;
@@ -63,10 +68,10 @@ public class RestaurantListView extends VerticalLayout
         }
     }
 
-    private void initializeView()
+    @Override
+    public void initializeView()
     {
-        //addImageColumn();
-        initializeFilterText();
+        initializeFilterTextFields();
         initializeReservationForm();
     }
 
@@ -88,17 +93,27 @@ public class RestaurantListView extends VerticalLayout
         });
     }
 
-    private void initializeFilterText()
+    private void initializeFilterTextFields()
     {
-        filteredText.setPlaceholder("Filter by name...");
-        filteredText.setClearButtonVisible(true);
-        filteredText.setValueChangeMode(ValueChangeMode.LAZY);
-        filteredText.addValueChangeListener(e -> filterTextChanged());
+        filteredByNameTextField.setPlaceholder("Filter by name...");
+        filteredByNameTextField.setClearButtonVisible(true);
+        filteredByNameTextField.setValueChangeMode(ValueChangeMode.LAZY);
+        filteredByNameTextField.addValueChangeListener(e -> filterByNameTextChanged());
+
+        filteredByCityTextField.setPlaceholder("Filter by city...");
+        filteredByCityTextField.setClearButtonVisible(true);
+        filteredByCityTextField.setValueChangeMode(ValueChangeMode.LAZY);
+        filteredByCityTextField.addValueChangeListener(e -> filterByCityTextChanged());
     }
 
-    private void filterTextChanged()
+    private void filterByNameTextChanged()
     {
-        grid.setItems(restaurantService.findAll(filteredText.getValue()));
+        grid.setItems(restaurantService.findAllByName(filteredByNameTextField.getValue()));
+    }
+
+    private void filterByCityTextChanged()
+    {
+        grid.setItems(restaurantService.findAllByCity(filteredByCityTextField.getValue()));
     }
     
     private void initializeReservationForm()
@@ -127,7 +142,8 @@ public class RestaurantListView extends VerticalLayout
 
     private Grid<Restaurant> grid = new Grid<>(Restaurant.class);
     private RestaurantService restaurantService;
-    private TextField filteredText = new TextField();
+    private TextField filteredByNameTextField = new TextField();
+    private TextField filteredByCityTextField = new TextField();
     
     private ReservationForm reservationForm;
     Restaurant prev;

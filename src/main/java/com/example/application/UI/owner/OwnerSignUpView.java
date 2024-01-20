@@ -1,5 +1,6 @@
 package com.example.application.UI.owner;
 
+import com.example.application.UI.IView;
 import com.example.application.globals.Globals;
 import com.example.application.UI.ISignUpView;
 import com.vaadin.flow.component.ClickEvent;
@@ -22,7 +23,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 @Route("owner-signup")
 @PageTitle("Restaurant Owner SignUp | Table Reservation App")
 @AnonymousAllowed
-public class OwnerSignUpView extends VerticalLayout implements ISignUpView
+public class OwnerSignUpView extends VerticalLayout implements ISignUpView, IView
 {
     public OwnerSignUpView()
     {
@@ -36,7 +37,8 @@ public class OwnerSignUpView extends VerticalLayout implements ISignUpView
         add(formLayout);
     }
 
-    private void configureUI()
+    @Override
+    public void configureUI()
     {
         formLayout.setMinWidth("400px");
 
@@ -50,11 +52,30 @@ public class OwnerSignUpView extends VerticalLayout implements ISignUpView
         formLayout.getStyle().set("margin", "auto");
         formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
     }
-    
+
+    @Override
+    public void initializeView()
+    {
+        signupTitle = new H1("Restaurant Sign Up");
+        usernameField = new TextField("Username");
+
+        emailField = new EmailField("Email Address");
+        emailField.setPlaceholder("your_mail@example.com");
+
+        passwordField = new PasswordField("Password");
+        repeatPasswordField = new PasswordField("Repeat Password");
+
+        signUpButton = new Button("Sign Up", this::attemptSignUp);
+        signUpButton.getStyle().set("margin-top", "20px");
+
+        backButton = new Button("back", new Icon(VaadinIcon.ARROW_LEFT), this::backButtonClicked);
+        backButton.setClassName("transparent-background-button");
+    }
+
     @Override
     public void initializeForm()
     {
-        initializeBasicDataForm();
+        initializeView();
         initializeRestaurantInfoForm();
         
         formLayout.add(
@@ -71,24 +92,6 @@ public class OwnerSignUpView extends VerticalLayout implements ISignUpView
                 signUpButton,
                 backButton
         );
-    }
-    
-    private void initializeBasicDataForm()
-    {
-        signupTitle = new H1("Restaurant Sign Up");
-        usernameField = new TextField("Username");
-        
-        emailField = new EmailField("Email Address");
-        emailField.setPlaceholder("your_mail@example.com");
-        
-        passwordField = new PasswordField("Password");
-        repeatPasswordField = new PasswordField("Repeat Password");
-        
-        signUpButton = new Button("Sign Up", this::attemptSignUp);
-        signUpButton.getStyle().set("margin-top", "20px");
-
-        backButton = new Button("back", new Icon(VaadinIcon.ARROW_LEFT), this::backButtonClicked);
-        backButton.setClassName("transparent-background-button");
     }
     
     private void initializeRestaurantInfoForm()
@@ -115,8 +118,8 @@ public class OwnerSignUpView extends VerticalLayout implements ISignUpView
     private PasswordField repeatPasswordField;
     
     private H3 restaurantInfoTitle;
-    TextField restaurantNameField;
-    TextField restaurantAddressField;
+    private TextField restaurantNameField;
+    private TextField restaurantAddressField;
     
     private Button signUpButton;
     private Button backButton;

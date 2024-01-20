@@ -1,7 +1,8 @@
 package com.example.application.UI.customer;
 
-import com.example.application.globals.Globals;
 import com.example.application.UI.ISignUpView;
+import com.example.application.UI.IView;
+import com.example.application.globals.Globals;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -21,7 +22,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 @Route("customer-signup")
 @PageTitle("Customer SignUp | Table Reservation App")
 @AnonymousAllowed
-public class CustomerSignUpView extends VerticalLayout implements ISignUpView
+public class CustomerSignUpView extends VerticalLayout implements ISignUpView, IView
 {
     public CustomerSignUpView()
     {
@@ -38,7 +39,7 @@ public class CustomerSignUpView extends VerticalLayout implements ISignUpView
     @Override
     public void initializeForm()
     {
-        initializeBasicDataForm();
+        initializeView();
 
         formLayout.add(
                 signupTitle, 
@@ -50,20 +51,21 @@ public class CustomerSignUpView extends VerticalLayout implements ISignUpView
                 backButton
         );
     }
-    
-    private void initializeBasicDataForm()
+
+    @Override
+    public void initializeView() 
     {
         signupTitle = new H1("Customer Sign Up");
         signupTitle.getStyle().set("margin-top", "20px");
 
         usernameField = new TextField("Username");
-        
+
         emailField = new EmailField("Email Address");
         emailField.setPlaceholder("your_mail@example.com");
-        
+
         passwordField = new PasswordField("Password");
         repeatPasswordField = new PasswordField("Repeat Password");
-        
+
         signUpButton = new Button("Sign Up", this::attemptSignUp);
         signUpButton.getStyle().set("margin-top", "20px");
 
@@ -71,7 +73,8 @@ public class CustomerSignUpView extends VerticalLayout implements ISignUpView
         backButton.setClassName("transparent-background-button");
     }
 
-    private void configureUI()
+    @Override
+    public void configureUI()
     {
         formLayout.setMaxWidth("400px");
 
@@ -85,7 +88,7 @@ public class CustomerSignUpView extends VerticalLayout implements ISignUpView
         formLayout.getStyle().set("margin", "auto");
         formLayout.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
     }
-    
+
     @Override
     public void attemptSignUp(ClickEvent<Button> clicked)
     {

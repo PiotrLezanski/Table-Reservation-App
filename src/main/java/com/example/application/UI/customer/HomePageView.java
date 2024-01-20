@@ -1,5 +1,6 @@
 package com.example.application.UI.customer;
 
+import com.example.application.UI.IView;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;
@@ -15,7 +16,7 @@ import jakarta.annotation.security.PermitAll;
 @PageTitle("home-page")
 @Route(value = "", layout = MainMenuView.class)
 @PermitAll
-public class HomePageView extends VerticalLayout
+public class HomePageView extends VerticalLayout implements IView
 {
     public HomePageView()
     {
@@ -23,7 +24,8 @@ public class HomePageView extends VerticalLayout
         initializeView();
     }
     
-    private void configureUI()
+    @Override
+    public void configureUI()
     {
         setClassName("home-page");
         
@@ -34,7 +36,8 @@ public class HomePageView extends VerticalLayout
         getStyle().set("flex-grow", "1");
     }
     
-    private void initializeView()
+    @Override
+    public void initializeView()
     {
         H1 welcomeText = new H1("Welcome to " + Globals.appName + "!");
         welcomeText.getStyle().set("color", "white");

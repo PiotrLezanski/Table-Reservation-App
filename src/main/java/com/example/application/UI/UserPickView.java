@@ -22,21 +22,27 @@ import static com.example.application.globals.UserType.RESTAURANT_OWNER;
 @Route("user-pick")
 @PageTitle("User Pick | Table Reservation App")
 @AnonymousAllowed
-public class UserPickView extends VerticalLayout {
+public class UserPickView extends VerticalLayout implements IView {
     
     static final String customerName = "Customer";
     static final String restaurantOwner = "Restaurant Owner";
     
     public UserPickView() 
     {
+        configureUI();
+        initializeView();
+    }
+
+    @Override
+    public void configureUI()
+    {
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
-        
-        initializeView();
     }
-    
-    private void initializeView()
+
+    @Override
+    public void initializeView()
     {
         initializeUserTypeCheckbox();
         initializeButtons();
