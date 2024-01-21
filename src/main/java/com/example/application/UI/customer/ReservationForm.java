@@ -100,7 +100,7 @@ public class ReservationForm extends FormLayout implements IView
     {
         
     }
-    
+
     private void configureDateAndTimePicker()
     {
         datePicker = new DatePicker("Date");
@@ -115,6 +115,38 @@ public class ReservationForm extends FormLayout implements IView
     {
         currentRestaurant = restaurant;
         binder.readBean(restaurant);
+    }
+
+    public TextField getName() {
+        return name;
+    }
+
+    public TextField getDescription() {
+        return description;
+    }
+
+    public TextField getCity() {
+        return city;
+    }
+
+    public TextField getAddress() {
+        return address;
+    }
+
+    public TextField getType() {
+        return type;
+    }
+
+    public Button getMakeReservationButton() {
+        return makeReservationButton;
+    }
+
+    public Button getCancelReservationButton() {
+        return cancelReservationButton;
+    }
+
+    public Button getCloseButton() {
+        return closeButton;
     }
     
     private H2 text = new H2("Book your table here");

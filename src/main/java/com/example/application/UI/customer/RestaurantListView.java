@@ -13,7 +13,10 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
+import org.springframework.context.annotation.Scope;
 
+@org.springframework.stereotype.Component
+@Scope("prototype")
 @PageTitle("restaurants")
 @Route(value = "restaurants", layout = MainMenuView.class)
 @PermitAll
@@ -138,6 +141,22 @@ public class RestaurantListView extends VerticalLayout implements IView
         reservationForm.fillWithRestaurant(null);
         reservationForm.setVisible(false);
         reservationForm.removeClassName("editing");
+    }
+
+    public Grid<Restaurant> getGrid() {
+        return grid;
+    }
+
+    public TextField getFilteredByNameTextField() {
+        return filteredByNameTextField;
+    }
+
+    public TextField getFilteredByCityTextField() {
+        return filteredByCityTextField;
+    }
+
+    public ReservationForm getReservationForm() {
+        return reservationForm;
     }
 
     private Grid<Restaurant> grid = new Grid<>(Restaurant.class);
