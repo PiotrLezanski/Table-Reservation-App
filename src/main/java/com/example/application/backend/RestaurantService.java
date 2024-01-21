@@ -57,7 +57,7 @@ public class RestaurantService
         restaurantRepository.save(restaurant);
     }
     
-    // delete after database conection
+    // delete after database connection
     @PostConstruct
     public void populateTestData()
     {

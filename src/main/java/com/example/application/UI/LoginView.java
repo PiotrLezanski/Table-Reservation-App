@@ -26,7 +26,7 @@ public class LoginView extends LoginOverlay implements IView, AfterNavigationObs
     @Override
     public void initializeView()
     {
-        var loginForm = LoginI18n.createDefault();
+        loginForm = LoginI18n.createDefault();
 
         loginForm.setHeader(new LoginI18n.Header());
         loginForm.getHeader().setTitle("Welcome to " + Globals.appName + "!");
@@ -64,4 +64,11 @@ public class LoginView extends LoginOverlay implements IView, AfterNavigationObs
     {
         setError(event.getLocation().getQueryParameters().getParameters().containsKey("error"));
     }
+
+    public LoginI18n getLoginForm()
+    {
+        return loginForm;
+    }
+
+    private LoginI18n loginForm;
 }
