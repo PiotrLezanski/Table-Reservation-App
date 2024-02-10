@@ -1,4 +1,4 @@
-package com.example.application.UI;
+package com.example.application.UI.common;
 
 public interface IView
 {

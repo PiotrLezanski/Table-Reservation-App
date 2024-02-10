@@ -1,6 +1,6 @@
 package com.example.application.UI.customer;
 
-import com.example.application.UI.IView;
+import com.example.application.UI.common.IView;
 import com.example.application.backend.Restaurant;
 import com.example.application.backend.RestaurantService;
 import com.vaadin.flow.component.Component;
@@ -12,14 +12,14 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.context.annotation.Scope;
 
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @PageTitle("restaurants")
-@Route(value = "restaurants", layout = MainMenuView.class)
-@PermitAll
+@Route(value = "restaurants", layout = CustomerMainMenuView.class)
+@RolesAllowed("USER")
 public class RestaurantListView extends VerticalLayout implements IView
 {
     public RestaurantListView(RestaurantService restaurantService)

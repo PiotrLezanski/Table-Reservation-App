@@ -34,4 +34,13 @@ public class SecurityConfig extends VaadinWebSecurity
                 .roles("USER")
                 .build());
     }
+    
+    @Bean
+    protected UserDetailsManager adminDetailsManager()
+    {
+        return new InMemoryUserDetailsManager(User.withUsername("owner")
+                .password("{noop}ownerpass")
+                .roles("OWNER")
+                .build());
+    }
 }

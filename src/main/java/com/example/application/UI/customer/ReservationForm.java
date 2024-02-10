@@ -1,6 +1,6 @@
 package com.example.application.UI.customer;
 
-import com.example.application.UI.IView;
+import com.example.application.UI.common.IView;
 import com.example.application.backend.Restaurant;
 import com.example.application.backend.converters.EnumToStringConverter;
 import com.example.application.globals.RestaurantType;

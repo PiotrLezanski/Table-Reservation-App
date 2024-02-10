@@ -1,18 +1,18 @@
 package com.example.application.UI.customer;
 
-import com.example.application.UI.IView;
+import com.example.application.UI.common.IView;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 
 
 @PageTitle("about us")
-@Route(value = "about-us", layout = MainMenuView.class)
-@PermitAll
+@Route(value = "about-us", layout = CustomerMainMenuView.class)
+@RolesAllowed("USER")
 public class AboutUsView extends VerticalLayout implements IView
 {
     public AboutUsView()

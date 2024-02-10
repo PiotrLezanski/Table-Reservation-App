@@ -1,9 +1,9 @@
-package com.example.application.UI.customer;
+package com.example.application.UI.owner;
 
-import com.example.application.UI.IView;
+import com.example.application.UI.common.IHomePageView;
+import com.example.application.UI.customer.CustomerMainMenuView;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
@@ -11,63 +11,57 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("home-page")
-@Route(value = "", layout = MainMenuView.class)
-@PermitAll
-public class HomePageView extends VerticalLayout implements IView
+@Route(value = "", layout = OwnerMainMenuView.class)
+@RolesAllowed("OWNER")
+public class OwnerHomePageView extends VerticalLayout implements IHomePageView
 {
-    public HomePageView()
-    {
-        configureUI();
-        initializeView();
-    }
-    
     @Override
     public void configureUI()
     {
         setClassName("home-page");
-        
+
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
-        
+
         setWidth("100%");
         getStyle().set("flex-grow", "1");
     }
-    
+
     @Override
-    public void initializeView()
+    public void initializeView() 
     {
         H1 welcomeText = new H1("Welcome to " + Globals.appName + "!");
         welcomeText.getStyle().set("color", "white");
-        
-        H2 alias = new H2("App to reserve table in your favourite restaurant");
+
+        H2 alias = new H2("App to connect hungry diners with your culinary delights and streamline table reservations effortlessly");
         alias.getStyle().set("color", "white");
 
-        Button learnMoreButton = new Button("Search the list", this::searchTheListButtonClicked);
+        Button learnMoreButton = new Button("Add your place", this::addYourPlaceButtonClicked);
         learnMoreButton.addClassName("mint-button");
-        
+
         Button searchButton = new Button("Learn more", this::learnMoreButtonClicked);
         searchButton.addClassName("mint-border-button");
-        
+
         add(
                 welcomeText,
                 alias,
                 new HorizontalLayout(
-                    learnMoreButton,
-                    searchButton
+                        learnMoreButton,
+                        searchButton
                 )
         );
     }
-    
-    private void learnMoreButtonClicked(ClickEvent<Button> event)
+
+    private void addYourPlaceButtonClicked(ClickEvent<Button> buttonClickEvent) 
     {
-        UI.getCurrent().navigate(AboutUsView.class);
+        
     }
 
-    private void searchTheListButtonClicked(ClickEvent<Button> event)
+    private void learnMoreButtonClicked(ClickEvent<Button> buttonClickEvent)
     {
-        UI.getCurrent().navigate(RestaurantListView.class);
+        
     }
 }

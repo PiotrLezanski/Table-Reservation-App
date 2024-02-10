@@ -1,6 +1,6 @@
 package com.example.application.UI.customer;
 
-import com.example.application.UI.IView;
+import com.example.application.UI.common.IMainMenuView;
 import com.example.application.globals.Globals;
 import com.example.application.security.SecurityService;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -12,17 +12,15 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLink;
-import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@PermitAll
-public class MainMenuView extends AppLayout implements IView
+@RolesAllowed("USER")
+public class CustomerMainMenuView extends AppLayout implements IMainMenuView
 {
-    private SecurityService securityService;
-    
-    public MainMenuView(SecurityService securityService)
+    public CustomerMainMenuView(SecurityService securityService)
     {
         this.securityService = securityService;
         
@@ -50,7 +48,8 @@ public class MainMenuView extends AppLayout implements IView
         initializeSideMenu();
     }
     
-    private void initializeHeader()
+    @Override
+    public void initializeHeader()
     {
         Image logo = new Image("images/foodie_logo.png", Globals.appName);
         logo.setMaxWidth("120px");
@@ -72,7 +71,8 @@ public class MainMenuView extends AppLayout implements IView
         addToNavbar(headerLayout);
     }
     
-    private void initializeSideMenu()
+    @Override
+    public void initializeSideMenu()
     {
         // by default menu is closed
         setDrawerOpened(false);
@@ -90,18 +90,21 @@ public class MainMenuView extends AppLayout implements IView
         addToDrawer(verticalLayout);
     }
     
-    private List<RouterLink> createRouterLinks()
+    @Override
+    public List<RouterLink> createRouterLinks()
     {
         List<RouterLink> routerLinks = new ArrayList<>();
         
-        routerLinks.add(new RouterLink("Home Page", HomePageView.class));
+        routerLinks.add(new RouterLink("Home Page", CustomerHomePageView.class));
         routerLinks.add(new RouterLink("About Us", AboutUsView.class));
         routerLinks.add(new RouterLink("Restaurants", RestaurantListView.class));
         
         return routerLinks;
     }
-
+    
     private H5 text;
     private Button logoutButton;
     private HorizontalLayout headerLayout;
+
+    private SecurityService securityService;
 }

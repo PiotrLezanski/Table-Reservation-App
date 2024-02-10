@@ -1,5 +1,6 @@
 package com.example.application.UI;
 
+import com.example.application.UI.common.IView;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.LoginI18n;

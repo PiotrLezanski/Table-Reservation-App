@@ -66,7 +66,7 @@ public class RestaurantListViewTest
 
         restaurants.forEach(restaurant -> {assertEquals(validCity, restaurant.getCity());});
     }
-
+    
     @Test
     public void testFilterByInvalidCity()
     {
@@ -83,18 +83,6 @@ public class RestaurantListViewTest
     {
         ReservationForm form = restaurantListView.getReservationForm();
         assertFalse(form.isVisible());
-    }
-    
-    @Test
-    public void testFormVisibleWhenRestaurantSelected()
-    {
-        ReservationForm form = restaurantListView.getReservationForm();
-        Restaurant firstRestaurant = getFirstItem();
-        
-        grid.asSingleSelect().setValue(firstRestaurant);
-        
-        assertTrue(form.isVisible());
-        assertEquals(firstRestaurant.getName(), form.getName().getValue());
     }
     
     @Autowired

@@ -1,5 +1,6 @@
-package com.example.application.UI;
+package com.example.application.UI.common;
 
+import com.example.application.UI.UserPickView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
