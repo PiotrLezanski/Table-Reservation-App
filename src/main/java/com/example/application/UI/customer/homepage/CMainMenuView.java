@@ -1,6 +1,8 @@
-package com.example.application.UI.customer;
+package com.example.application.UI.customer.homepage;
 
 import com.example.application.UI.common.IMainMenuView;
+import com.example.application.UI.customer.aboutus.CAboutUsView;
+import com.example.application.UI.customer.restaurants.RestaurantListView;
 import com.example.application.globals.Globals;
 import com.example.application.security.SecurityService;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -18,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RolesAllowed("USER")
-public class CustomerMainMenuView extends AppLayout implements IMainMenuView
+public class CMainMenuView extends AppLayout implements IMainMenuView
 {
-    public CustomerMainMenuView(SecurityService securityService)
+    public CMainMenuView(SecurityService securityService)
     {
         this.securityService = securityService;
         
@@ -95,8 +97,8 @@ public class CustomerMainMenuView extends AppLayout implements IMainMenuView
     {
         List<RouterLink> routerLinks = new ArrayList<>();
         
-        routerLinks.add(new RouterLink("Home Page", CustomerHomePageView.class));
-        routerLinks.add(new RouterLink("About Us", AboutUsView.class));
+        routerLinks.add(new RouterLink("Home Page", CHomePageView.class));
+        routerLinks.add(new RouterLink("About Us", CAboutUsView.class));
         routerLinks.add(new RouterLink("Restaurants", RestaurantListView.class));
         
         return routerLinks;

@@ -1,4 +1,4 @@
-package com.example.application.UI.owner;
+package com.example.application.UI.owner.signup;
 
 import com.example.application.UI.common.IView;
 import com.example.application.globals.Globals;
@@ -23,9 +23,9 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 @Route("owner-signup")
 @PageTitle("Restaurant Owner SignUp | Table Reservation App")
 @AnonymousAllowed
-public class OwnerSignUpView extends VerticalLayout implements ISignUpView, IView
+public class OSignUpView extends VerticalLayout implements ISignUpView, IView
 {
-    public OwnerSignUpView()
+    public OSignUpView()
     {
         // Create a form layout
         formLayout = new FormLayout();

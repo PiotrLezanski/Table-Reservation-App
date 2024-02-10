@@ -1,7 +1,7 @@
 package com.example.application.UI;
 
-import com.example.application.UI.customer.ReservationForm;
-import com.example.application.UI.customer.RestaurantListView;
+import com.example.application.UI.customer.restaurants.ReservationForm;
+import com.example.application.UI.customer.restaurants.RestaurantListView;
 import com.example.application.backend.Restaurant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.data.provider.ListDataProvider;

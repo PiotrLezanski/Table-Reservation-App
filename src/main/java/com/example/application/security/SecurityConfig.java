@@ -1,6 +1,6 @@
 package com.example.application.security;
 
-import com.example.application.UI.LoginView;
+import com.example.application.UI.login.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 
@@ -27,20 +28,18 @@ public class SecurityConfig extends VaadinWebSecurity
     }
     
     @Bean
-    protected UserDetailsManager userDetailsManager()
+    protected UserDetailsManager userDetailsManager() 
     {
-        return new InMemoryUserDetailsManager(User.withUsername("user")
+        UserDetails user = User.withUsername("user")
                 .password("{noop}userpass")
                 .roles("USER")
-                .build());
-    }
-    
-    @Bean
-    protected UserDetailsManager adminDetailsManager()
-    {
-        return new InMemoryUserDetailsManager(User.withUsername("owner")
+                .build();
+
+        UserDetails admin = User.withUsername("owner")
                 .password("{noop}ownerpass")
                 .roles("OWNER")
-                .build());
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin);
     }
 }

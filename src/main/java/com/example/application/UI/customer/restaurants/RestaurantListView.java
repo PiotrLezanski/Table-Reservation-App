@@ -1,6 +1,7 @@
-package com.example.application.UI.customer;
+package com.example.application.UI.customer.restaurants;
 
 import com.example.application.UI.common.IView;
+import com.example.application.UI.customer.homepage.CMainMenuView;
 import com.example.application.backend.Restaurant;
 import com.example.application.backend.RestaurantService;
 import com.vaadin.flow.component.Component;
@@ -18,7 +19,7 @@ import org.springframework.context.annotation.Scope;
 @org.springframework.stereotype.Component
 @Scope("prototype")
 @PageTitle("restaurants")
-@Route(value = "restaurants", layout = CustomerMainMenuView.class)
+@Route(value = "restaurants", layout = CMainMenuView.class)
 @RolesAllowed("USER")
 public class RestaurantListView extends VerticalLayout implements IView
 {

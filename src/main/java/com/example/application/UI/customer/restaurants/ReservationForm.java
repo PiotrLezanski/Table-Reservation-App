@@ -1,4 +1,4 @@
-package com.example.application.UI.customer;
+package com.example.application.UI.customer.restaurants;
 
 import com.example.application.UI.common.IView;
 import com.example.application.backend.Restaurant;

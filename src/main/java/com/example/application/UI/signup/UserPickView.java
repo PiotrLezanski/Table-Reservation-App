@@ -1,6 +1,7 @@
-package com.example.application.UI;
+package com.example.application.UI.signup;
 
 import com.example.application.UI.common.IView;
+import com.example.application.UI.login.LoginView;
 import com.example.application.globals.Globals;
 import com.example.application.globals.UserType;
 import com.vaadin.flow.component.ClickEvent;

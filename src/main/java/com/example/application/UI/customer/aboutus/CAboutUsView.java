@@ -1,6 +1,7 @@
-package com.example.application.UI.customer;
+package com.example.application.UI.customer.aboutus;
 
 import com.example.application.UI.common.IView;
+import com.example.application.UI.customer.homepage.CMainMenuView;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
@@ -11,11 +12,11 @@ import jakarta.annotation.security.RolesAllowed;
 
 
 @PageTitle("about us")
-@Route(value = "about-us", layout = CustomerMainMenuView.class)
+@Route(value = "about-us", layout = CMainMenuView.class)
 @RolesAllowed("USER")
-public class AboutUsView extends VerticalLayout implements IView
+public class CAboutUsView extends VerticalLayout implements IView
 {
-    public AboutUsView()
+    public CAboutUsView()
     {
         configureUI();
         initializeView();

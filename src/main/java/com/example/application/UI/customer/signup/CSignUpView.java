@@ -1,4 +1,4 @@
-package com.example.application.UI.customer;
+package com.example.application.UI.customer.signup;
 
 import com.example.application.UI.common.ISignUpView;
 import com.example.application.UI.common.IView;
@@ -22,9 +22,9 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 @Route("customer-signup")
 @PageTitle("Customer SignUp | Table Reservation App")
 @AnonymousAllowed
-public class CustomerSignUpView extends VerticalLayout implements ISignUpView, IView
+public class CSignUpView extends VerticalLayout implements ISignUpView, IView
 {
-    public CustomerSignUpView()
+    public CSignUpView()
     {
         // Create a form layout
         formLayout = new FormLayout();

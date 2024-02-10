@@ -1,6 +1,7 @@
-package com.example.application.UI;
+package com.example.application.UI.login;
 
 import com.example.application.UI.common.IView;
+import com.example.application.UI.signup.UserPickView;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.LoginI18n;
