@@ -16,8 +16,8 @@ import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("home-page")
-@Route(value = "", layout = CMainMenuView.class)
-@RolesAllowed("USER")
+@Route(value = "customer-homepage", layout = CMainMenuView.class)
+@RolesAllowed("ROLE_CUSTOMER")
 public class CHomePageView extends VerticalLayout implements IHomePageView
 {
     public CHomePageView()

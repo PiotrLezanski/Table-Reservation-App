@@ -19,7 +19,7 @@ import jakarta.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
 
-@RolesAllowed("OWNER")
+@RolesAllowed("ROLE_OWNER")
 public class OMainMenuView extends AppLayout implements IMainMenuView
 {
     public OMainMenuView(SecurityService securityService)
@@ -98,7 +98,7 @@ public class OMainMenuView extends AppLayout implements IMainMenuView
 
         routerLinks.add(new RouterLink("Home Page", OHomePageView.class));
         routerLinks.add(new RouterLink("About us", OAboutUsView.class));
-        routerLinks.add(new RouterLink("Add your restaurant", AddRestaurantView.class));
+        routerLinks.add(new RouterLink("Add restaurant", AddRestaurantView.class));
 
         return routerLinks;
     }

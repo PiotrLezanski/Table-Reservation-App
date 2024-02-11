@@ -12,8 +12,8 @@ import jakarta.annotation.security.RolesAllowed;
 
 
 @PageTitle("about us")
-@Route(value = "about-us", layout = CMainMenuView.class)
-@RolesAllowed("USER")
+@Route(value = "customer-about-us", layout = CMainMenuView.class)
+@RolesAllowed("ROLE_CUSTOMER")
 public class CAboutUsView extends VerticalLayout implements IView
 {
     public CAboutUsView()

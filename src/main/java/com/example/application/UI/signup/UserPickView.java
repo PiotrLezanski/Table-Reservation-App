@@ -19,7 +19,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import static com.example.application.globals.UserType.CUSTOMER;
-import static com.example.application.globals.UserType.RESTAURANT_OWNER;
+import static com.example.application.globals.UserType.OWNER;
 
 @Route("user-pick")
 @PageTitle("User Pick | Table Reservation App")
@@ -79,7 +79,7 @@ public class UserPickView extends VerticalLayout implements IView {
         switch(userType)
         {
             case CUSTOMER -> UI.getCurrent().navigate(signUpViewFactory.createCustomerSignUpView().getClass()); 
-            case RESTAURANT_OWNER -> UI.getCurrent().navigate(signUpViewFactory.createOwnerSignUpView().getClass());
+            case OWNER -> UI.getCurrent().navigate(signUpViewFactory.createOwnerSignUpView().getClass());
             default -> Globals.showPopup("User type not valid", NotificationVariant.LUMO_ERROR, Notification.Position.BOTTOM_CENTER);
         }
     }
@@ -92,7 +92,7 @@ public class UserPickView extends VerticalLayout implements IView {
         userTypeButtons.setValue(customerName);
         
         userTypeButtons.addValueChangeListener(event -> {
-                    userType = event.getValue().equals(customerName) ? CUSTOMER : RESTAURANT_OWNER;
+                    userType = event.getValue().equals(customerName) ? CUSTOMER : OWNER;
                 }
         );
     }

@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Scope;
 @Scope("prototype")
 @PageTitle("restaurants")
 @Route(value = "restaurants", layout = CMainMenuView.class)
-@RolesAllowed("USER")
+@RolesAllowed("ROLE_CUSTOMER")
 public class RestaurantListView extends VerticalLayout implements IView
 {
     public RestaurantListView(RestaurantService restaurantService)
