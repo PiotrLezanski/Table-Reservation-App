@@ -1,4 +1,4 @@
-package com.example.application.backend;
+package com.example.application.entities;
 
 import com.example.application.globals.RestaurantType;
 import jakarta.persistence.Entity;

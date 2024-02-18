@@ -2,6 +2,7 @@ package com.example.application.UI.customer.aboutus;
 
 import com.example.application.UI.common.IView;
 import com.example.application.UI.customer.homepage.CMainMenuView;
+import com.example.application.globals.Globals;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
@@ -13,7 +14,7 @@ import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("about us")
 @Route(value = "customer-about-us", layout = CMainMenuView.class)
-@RolesAllowed("ROLE_CUSTOMER")
+@RolesAllowed(Globals.ROLE_CUSTOMER)
 public class CAboutUsView extends VerticalLayout implements IView
 {
     public CAboutUsView()
@@ -27,7 +28,6 @@ public class CAboutUsView extends VerticalLayout implements IView
     {
         setMargin(false);
         setPadding(false);
-
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
     }
@@ -40,15 +40,16 @@ public class CAboutUsView extends VerticalLayout implements IView
         
         initializeText();
         
-        add(mainImage,
-           descriptionLayout
+        add(
+                mainImage,
+                descriptionLayout
         );
     }
     
     private void initializeText()
     {
         descriptionLayout = new VerticalLayout();
-        descriptionLayout.addClassName("about-us");
+        descriptionLayout.addClassName("customer-about-us");
         descriptionLayout.getStyle().set("color", "black");
         descriptionLayout.getStyle().set("padding-left", "70vh");
         descriptionLayout.setMargin(false);
@@ -74,7 +75,10 @@ public class CAboutUsView extends VerticalLayout implements IView
         );
         keyFeatures.getStyle().set("font-size", "1.2em");
         
-        descriptionLayout.add(description, keyFeatures);
+        descriptionLayout.add(
+                description, 
+                keyFeatures
+        );
     }
 
     private VerticalLayout descriptionLayout;

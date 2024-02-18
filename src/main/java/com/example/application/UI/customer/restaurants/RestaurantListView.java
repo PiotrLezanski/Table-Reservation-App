@@ -2,8 +2,9 @@ package com.example.application.UI.customer.restaurants;
 
 import com.example.application.UI.common.IView;
 import com.example.application.UI.customer.homepage.CMainMenuView;
-import com.example.application.backend.Restaurant;
+import com.example.application.entities.Restaurant;
 import com.example.application.backend.RestaurantService;
+import com.example.application.globals.Globals;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
@@ -20,7 +21,7 @@ import org.springframework.context.annotation.Scope;
 @Scope("prototype")
 @PageTitle("restaurants")
 @Route(value = "restaurants", layout = CMainMenuView.class)
-@RolesAllowed("ROLE_CUSTOMER")
+@RolesAllowed(Globals.ROLE_CUSTOMER)
 public class RestaurantListView extends VerticalLayout implements IView
 {
     public RestaurantListView(RestaurantService restaurantService)
@@ -50,7 +51,7 @@ public class RestaurantListView extends VerticalLayout implements IView
     private void configureGrid()
     {
         grid.setSizeFull();
-        grid.setColumns("name", "city", "address", "type");
+        grid.setColumns("id", "name", "city", "address", "type");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
         
         prev = null;

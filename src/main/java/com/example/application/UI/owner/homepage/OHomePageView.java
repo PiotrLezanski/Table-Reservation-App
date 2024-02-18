@@ -1,8 +1,11 @@
 package com.example.application.UI.owner.homepage;
 
 import com.example.application.UI.common.IHomePageView;
+import com.example.application.UI.owner.aboutus.OAboutUsView;
+import com.example.application.UI.owner.restaurants.AddRestaurantView;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
@@ -14,7 +17,7 @@ import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("home-page")
 @Route(value = "owner-homepage", layout = OMainMenuView.class)
-@RolesAllowed("ROLE_OWNER")
+@RolesAllowed(Globals.ROLE_OWNER)
 public class OHomePageView extends VerticalLayout implements IHomePageView
 {
     public OHomePageView()
@@ -44,10 +47,10 @@ public class OHomePageView extends VerticalLayout implements IHomePageView
         H2 alias = new H2("App to connect hungry diners with your culinary delights and streamline table reservations effortlessly");
         alias.getStyle().set("color", "white");
 
-        Button learnMoreButton = new Button("Add restaurant", this::addYourPlaceButtonClicked);
+        Button learnMoreButton = new Button("Add restaurant", this::addRestaurantButtonClicked);
         learnMoreButton.addClassName("mint-button");
 
-        Button searchButton = new Button("Learn more", this::learnMoreButtonClicked);
+        Button searchButton = new Button("How does it work?", this::learnMoreButtonClicked);
         searchButton.addClassName("mint-border-button");
 
         add(
@@ -60,13 +63,13 @@ public class OHomePageView extends VerticalLayout implements IHomePageView
         );
     }
 
-    private void addYourPlaceButtonClicked(ClickEvent<Button> buttonClickEvent) 
+    private void addRestaurantButtonClicked(ClickEvent<Button> buttonClickEvent) 
     {
-
+        UI.getCurrent().navigate(AddRestaurantView.class);
     }
 
     private void learnMoreButtonClicked(ClickEvent<Button> buttonClickEvent)
     {
-
+        UI.getCurrent().navigate(OAboutUsView.class);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.application.UI.customer.restaurants;
 
 import com.example.application.UI.common.IView;
-import com.example.application.backend.Restaurant;
+import com.example.application.entities.Restaurant;
 import com.example.application.backend.converters.EnumToStringConverter;
 import com.example.application.globals.RestaurantType;
 import com.vaadin.flow.component.ComponentEvent;
@@ -12,6 +12,8 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -52,12 +54,18 @@ public class ReservationForm extends FormLayout implements IView
 
         configureDateAndTimePicker();
         configureButtons();
+        
+        configureNumberOfPeopleField();
 
         HorizontalLayout timeLayout = new HorizontalLayout(datePicker, timePicker);
 
-        HorizontalLayout buttonsLayout = new HorizontalLayout(makeReservationButton,
+        configureAdditionalNotesTextArea();
+
+        HorizontalLayout buttonsLayout = new HorizontalLayout(
+                makeReservationButton,
                 cancelReservationButton,
-                closeButton);
+                closeButton
+        );
         buttonsLayout.getStyle().set("margin-top", "20px");
         
         add(
@@ -67,7 +75,9 @@ public class ReservationForm extends FormLayout implements IView
                 city,
                 address,
                 type,
+                numberOfPeopleField,
                 timeLayout,
+                notesTextArea,
                 buttonsLayout
         );
     }
@@ -84,6 +94,19 @@ public class ReservationForm extends FormLayout implements IView
         
         closeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         closeButton.addClickListener(event -> fireEvent(new CloseEvent(this)));
+    }
+    
+    private void configureNumberOfPeopleField()
+    {
+        numberOfPeopleField.setValue(2);
+        numberOfPeopleField.setStepButtonsVisible(true);
+        numberOfPeopleField.setMin(1);
+        numberOfPeopleField.setMax(10);
+    }
+    
+    private void configureAdditionalNotesTextArea()
+    {
+        notesTextArea.setMaxHeight("90px");
     }
 
     private void makeReservationButtonClicked()
@@ -104,8 +127,11 @@ public class ReservationForm extends FormLayout implements IView
     private void configureDateAndTimePicker()
     {
         datePicker = new DatePicker("Date");
+        datePicker.setRequired(true);
 
         timePicker = new TimePicker();
+        timePicker.setRequired(true);
+        timePicker.setValue(null);
         timePicker.setLabel("Time");
         timePicker.setStep(Duration.ofMinutes(15));
         timePicker.setValue(LocalTime.of(7, 0));
@@ -158,6 +184,9 @@ public class ReservationForm extends FormLayout implements IView
     
     private DatePicker datePicker;
     private TimePicker timePicker;
+    
+    private IntegerField numberOfPeopleField = new IntegerField("Number of people");
+    private TextArea notesTextArea = new TextArea("Additional notes");
     
     private Button makeReservationButton = new Button("Make a reservation");
     private Button cancelReservationButton = new Button("Cancel reservation");

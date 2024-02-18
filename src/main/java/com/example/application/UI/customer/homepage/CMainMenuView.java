@@ -19,7 +19,7 @@ import jakarta.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
 
-@RolesAllowed("ROLE_CUSTOMER")
+@RolesAllowed(Globals.ROLE_CUSTOMER)
 public class CMainMenuView extends AppLayout implements IMainMenuView
 {
     public CMainMenuView(SecurityService securityService)

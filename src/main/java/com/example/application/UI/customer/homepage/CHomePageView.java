@@ -17,7 +17,7 @@ import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("home-page")
 @Route(value = "customer-homepage", layout = CMainMenuView.class)
-@RolesAllowed("ROLE_CUSTOMER")
+@RolesAllowed(Globals.ROLE_CUSTOMER)
 public class CHomePageView extends VerticalLayout implements IHomePageView
 {
     public CHomePageView()
@@ -50,7 +50,7 @@ public class CHomePageView extends VerticalLayout implements IHomePageView
         Button learnMoreButton = new Button("Search the list", this::searchTheListButtonClicked);
         learnMoreButton.addClassName("mint-button");
         
-        Button searchButton = new Button("Learn more", this::learnMoreButtonClicked);
+        Button searchButton = new Button("How does it work?", this::learnMoreButtonClicked);
         searchButton.addClassName("mint-border-button");
         
         add(
