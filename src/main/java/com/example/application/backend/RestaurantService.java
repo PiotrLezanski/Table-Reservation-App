@@ -1,6 +1,6 @@
 package com.example.application.backend;
 
-import com.example.application.entities.Restaurant;
+import com.example.application.entities.restaurant.Restaurant;
 import com.example.application.globals.RestaurantType;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.application.entities;
+package com.example.application.entities.restaurant;
 
 import com.example.application.globals.RestaurantType;
 import jakarta.persistence.Entity;

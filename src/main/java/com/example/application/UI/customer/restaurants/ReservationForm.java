@@ -1,9 +1,12 @@
 package com.example.application.UI.customer.restaurants;
 
 import com.example.application.UI.common.IView;
-import com.example.application.entities.Restaurant;
 import com.example.application.backend.converters.EnumToStringConverter;
+import com.example.application.entities.reservation.ReservationInfo;
+import com.example.application.entities.restaurant.Restaurant;
+import com.example.application.globals.Globals;
 import com.example.application.globals.RestaurantType;
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
@@ -11,6 +14,8 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -18,7 +23,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.shared.Registration;
 
 import java.time.Duration;
@@ -85,17 +89,17 @@ public class ReservationForm extends FormLayout implements IView
     private void configureButtons()
     {
         makeReservationButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        makeReservationButton.addClickListener(event -> makeReservationButtonClicked());
+        makeReservationButton.addClickListener(this::makeReservationButtonClicked);
         
         cancelReservationButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
         // the button will be enabled after reservation is made
         cancelReservationButton.setEnabled(false);
-        cancelReservationButton.addClickListener(event -> cancelReservationButtonClicked());
+        cancelReservationButton.addClickListener(this::cancelReservationButtonClicked);
         
         closeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         closeButton.addClickListener(event -> fireEvent(new CloseEvent(this)));
     }
-    
+
     private void configureNumberOfPeopleField()
     {
         numberOfPeopleField.setValue(2);
@@ -109,19 +113,45 @@ public class ReservationForm extends FormLayout implements IView
         notesTextArea.setMaxHeight("90px");
     }
 
-    private void makeReservationButtonClicked()
+    private ReservationInfo createReservationInfoFromForm() 
     {
-        try {
-            binder.writeBean(currentRestaurant);
-            fireEvent(new MakeReservationEvent(this, currentRestaurant));
-        } catch (ValidationException e) {
-            e.printStackTrace();
-        }
+        ReservationInfo reservationInfo = new ReservationInfo();
+        reservationInfo.setRestaurantId(currentRestaurant.getId());
+        reservationInfo.setNumberOfPeople(numberOfPeopleField.getValue());
+        reservationInfo.setDate(datePicker.getValue());
+        reservationInfo.setTime(timePicker.getValue());
+        return reservationInfo;
     }
 
-    private void cancelReservationButtonClicked()
+    private void makeReservationButtonClicked(ClickEvent<Button> buttonClickEvent)
     {
+        if(isAnyFieldEmpty())
+        {
+            Globals.showPopup("Please fill in all the fields", NotificationVariant.LUMO_ERROR, Notification.Position.BOTTOM_END);
+            return;
+        }
         
+        ReservationInfo reservationInfo = createReservationInfoFromForm();
+        fireEvent(new MakeReservationEvent(this, reservationInfo));
+        
+        cancelReservationButton.setEnabled(true);
+//        cancelReservationButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY,
+//                ButtonVariant.LUMO_ERROR);
+    }
+
+    private boolean isAnyFieldEmpty() 
+    {
+        if(numberOfPeopleField.isEmpty() || datePicker.isEmpty() || timePicker.isEmpty())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void cancelReservationButtonClicked(ClickEvent<Button> buttonClickEvent)
+    {
+        ReservationInfo reservationInfo = createReservationInfoFromForm();
+        fireEvent(new CancelReservationEvent(this, reservationInfo));
     }
 
     private void configureDateAndTimePicker()
@@ -198,29 +228,28 @@ public class ReservationForm extends FormLayout implements IView
     
     // Events
     public static abstract class ReservationFormEvent extends ComponentEvent<ReservationForm> {
-        private Restaurant restaurant;
+        private ReservationInfo reservationInfo;
 
-        protected ReservationFormEvent(ReservationForm source, Restaurant restaurant) {
+        protected ReservationFormEvent(ReservationForm source, ReservationInfo reservationInfo) {
             super(source, false);
-            this.restaurant = restaurant;
+            this.reservationInfo = reservationInfo;
         }
 
-        public Restaurant getRestaurant() {
-            return restaurant;
+        public ReservationInfo getReservationInfo() {
+            return reservationInfo;
         }
     }
 
     public static class MakeReservationEvent extends ReservationFormEvent {
-        MakeReservationEvent(ReservationForm source, Restaurant restaurant) {
-            super(source, restaurant);
+        MakeReservationEvent(ReservationForm source, ReservationInfo reservationInfo) {
+            super(source, reservationInfo);
         }
     }
 
     public static class CancelReservationEvent extends ReservationFormEvent {
-        CancelReservationEvent(ReservationForm source, Restaurant restaurant) {
-            super(source, restaurant);
+        CancelReservationEvent(ReservationForm source, ReservationInfo reservationInfo) {
+            super(source, reservationInfo);
         }
-
     }
 
     public static class CloseEvent extends ReservationFormEvent {
@@ -229,12 +258,11 @@ public class ReservationForm extends FormLayout implements IView
         }
     }
 
-    public Registration addDeleteListener(ComponentEventListener<CancelReservationEvent> listener) {
-        return addListener(CancelReservationEvent.class, listener);
-    }
-
-    public Registration addSaveListener(ComponentEventListener<MakeReservationEvent> listener) {
+    public Registration addMakeReservationListener(ComponentEventListener<MakeReservationEvent> listener) {
         return addListener(MakeReservationEvent.class, listener);
+    }
+    public Registration addCancelReservationListener(ComponentEventListener<CancelReservationEvent> listener) {
+        return addListener(CancelReservationEvent.class, listener);
     }
     public Registration addCloseListener(ComponentEventListener<CloseEvent> listener) {
         return addListener(CloseEvent.class, listener);

@@ -3,7 +3,7 @@ package com.example.application.UI.owner.restaurants;
 import com.example.application.UI.common.IView;
 import com.example.application.UI.owner.homepage.OMainMenuView;
 import com.example.application.backend.RestaurantService;
-import com.example.application.entities.Restaurant;
+import com.example.application.entities.restaurant.Restaurant;
 import com.example.application.globals.Globals;
 import com.example.application.globals.RestaurantType;
 import com.vaadin.flow.component.ClickEvent;
@@ -73,9 +73,6 @@ public class AddRestaurantView extends VerticalLayout implements IView
     @Override
     public void configureUI() 
     {
-//        setAlignItems(Alignment.CENTER);
-//        setJustifyContentMode(JustifyContentMode.CENTER);
-
         configureButtons();
         configureComboBox();
         

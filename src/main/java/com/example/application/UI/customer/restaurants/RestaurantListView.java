@@ -2,8 +2,8 @@ package com.example.application.UI.customer.restaurants;
 
 import com.example.application.UI.common.IView;
 import com.example.application.UI.customer.homepage.CMainMenuView;
-import com.example.application.entities.Restaurant;
 import com.example.application.backend.RestaurantService;
+import com.example.application.entities.restaurant.Restaurant;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.grid.Grid;
@@ -46,8 +46,9 @@ public class RestaurantListView extends VerticalLayout implements IView
     {
         setSizeFull();
         configureGrid();
+        configureForm();
     }
-    
+
     private void configureGrid()
     {
         grid.setSizeFull();
@@ -56,6 +57,23 @@ public class RestaurantListView extends VerticalLayout implements IView
         
         prev = null;
         grid.addItemClickListener(e -> openCloseReservationForm(e.getItem()));
+    }
+
+    private void configureForm() 
+    {
+        reservationForm.addMakeReservationListener(this::makeReservation);
+        reservationForm.addCancelReservationListener(this::cancelReservation);
+        reservationForm.addCloseListener(e -> closeReservationForm());
+    }
+
+    private void makeReservation(ReservationForm.MakeReservationEvent makeReservationEvent) 
+    {
+        
+    }
+
+    private void cancelReservation(ReservationForm.CancelReservationEvent cancelReservationEvent) 
+    {
+        
     }
 
     private void openCloseReservationForm(Restaurant current)
@@ -166,6 +184,6 @@ public class RestaurantListView extends VerticalLayout implements IView
     private TextField filteredByNameTextField = new TextField();
     private TextField filteredByCityTextField = new TextField();
     
-    private ReservationForm reservationForm;
+    private ReservationForm reservationForm = new ReservationForm();
     Restaurant prev;
 }

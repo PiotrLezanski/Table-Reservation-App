@@ -1,4 +1,4 @@
-package com.example.application.entities;
+package com.example.application.entities.restaurant;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

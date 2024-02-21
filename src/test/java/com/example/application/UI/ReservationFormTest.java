@@ -1,7 +1,7 @@
 package com.example.application.UI;
 
 import com.example.application.UI.customer.restaurants.ReservationForm;
-import com.example.application.entities.Restaurant;
+import com.example.application.entities.restaurant.Restaurant;
 import com.example.application.globals.RestaurantType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

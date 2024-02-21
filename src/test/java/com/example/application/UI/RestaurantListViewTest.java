@@ -2,7 +2,7 @@ package com.example.application.UI;
 
 import com.example.application.UI.customer.restaurants.ReservationForm;
 import com.example.application.UI.customer.restaurants.RestaurantListView;
-import com.example.application.entities.Restaurant;
+import com.example.application.entities.restaurant.Restaurant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import org.junit.jupiter.api.BeforeEach;
