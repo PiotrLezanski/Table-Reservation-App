@@ -29,7 +29,8 @@ Bon appétit! 🎉
 ## Boring stuff for developers
 
 ### UML
-[FoodieApp_UML.pdf](..%2F..%2FFoodieApp_UML.pdf)
+![Foodie_UML](https://github.com/PiotrLezanski/Table-Reservation-App/assets/91131233/9824ac71-f9ee-4f2a-8cf0-ae87a7eaf841)
+
 
 ### Running the application
 
