@@ -1,0 +1,9 @@
+package com.example.application.globals.exceptions;
+
+public class UsernameAlreadyExistsException extends RuntimeException
+{
+    public UsernameAlreadyExistsException(String message)
+    {
+        super(message);
+    }
+}
