@@ -2,18 +2,22 @@ package com.example.application.UI.login;
 
 import com.example.application.UI.common.IView;
 import com.example.application.UI.signup.UserPickView;
+import com.example.application.backend.user.UserService;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.router.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("login")
 @PageTitle("Login | Table Reservation App")
 public class LoginView extends LoginOverlay implements IView, AfterNavigationObserver, BeforeEnterObserver
 {
-    public LoginView()
+    @Autowired
+    public LoginView(UserService userService)
     {
+        this.userService = userService;
         configureUI();
         initializeView();
     }
@@ -46,6 +50,7 @@ public class LoginView extends LoginOverlay implements IView, AfterNavigationObs
         setForgotPasswordButtonVisible(true);
 
         addForgotPasswordListener(forgotPasswordEvent -> createAccountButtonClicked());
+        addLoginListener(this::signInButtonClicked);
 
         setI18n(loginForm);
     }
@@ -53,6 +58,26 @@ public class LoginView extends LoginOverlay implements IView, AfterNavigationObs
     private void createAccountButtonClicked()
     {
         UI.getCurrent().navigate(UserPickView.class);
+    }
+
+    private void signInButtonClicked(LoginEvent event)
+    {
+        String username = event.getUsername();
+        String password = event.getPassword();
+
+        // Authenticate the user (you can use your existing service for this)
+        boolean authenticated = userService.authenticate(username, password);
+
+        if (authenticated)
+        {
+            // Successful login, navigate to the appropriate view
+            UI.getCurrent().getPage().setLocation("");
+        }
+        else
+        {
+            // Failed login, show an error
+            setError(true);
+        }
     }
 
     @Override
@@ -73,4 +98,5 @@ public class LoginView extends LoginOverlay implements IView, AfterNavigationObs
     }
 
     private LoginI18n loginForm;
+    private final UserService userService;
 }

@@ -2,8 +2,14 @@ package com.example.application.UI.customer.signup;
 
 import com.example.application.UI.common.ISignUpView;
 import com.example.application.UI.common.IView;
+import com.example.application.UI.login.LoginView;
+import com.example.application.backend.user.UserService;
+import com.example.application.entities.user.CustomUser;
 import com.example.application.globals.Globals;
+import com.example.application.globals.exceptions.EmailAlreadyExistsException;
+import com.example.application.globals.exceptions.UsernameAlreadyExistsException;
 import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H1;
@@ -18,14 +24,22 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import static com.example.application.globals.Globals.ROLE_CUSTOMER;
 
 @Route("customer-signup")
 @PageTitle("Customer SignUp | Table Reservation App")
 @AnonymousAllowed
 public class CSignUpView extends VerticalLayout implements ISignUpView, IView
 {
-    public CSignUpView()
+    @Autowired
+    public CSignUpView(UserService userService)
     {
+        this.userService = userService;
+
         // Create a form layout
         formLayout = new FormLayout();
 
@@ -92,10 +106,39 @@ public class CSignUpView extends VerticalLayout implements ISignUpView, IView
     @Override
     public void attemptSignUp(ClickEvent<Button> clicked)
     {
-        // TODO: Implement your authentication logic here, add new customer
-        Globals.showPopup("New customer signed up", NotificationVariant.LUMO_SUCCESS, Notification.Position.BOTTOM_CENTER);
+        if(usernameField.isEmpty() || emailField.isEmpty() || passwordField.isEmpty() || repeatPasswordField.isEmpty())
+        {
+            Globals.showPopup("None of the fields can be empty", NotificationVariant.LUMO_ERROR, Notification.Position.BOTTOM_CENTER);
+            return;
+        }
+
+        if(!passwordField.getValue().equals(repeatPasswordField.getValue()))
+        {
+            Globals.showPopup("Password is not the same", NotificationVariant.LUMO_ERROR, Notification.Position.BOTTOM_CENTER);
+            return;
+        }
+
+        CustomUser newUser = new CustomUser(
+                usernameField.getValue(), passwordEncoder.encode(passwordField.getValue()), emailField.getValue(), ROLE_CUSTOMER
+        );
+
+        try
+        {
+            userService.save(newUser);
+            Globals.showPopup("New customer signed up", NotificationVariant.LUMO_SUCCESS, Notification.Position.BOTTOM_CENTER);
+            UI.getCurrent().navigate(LoginView.class);
+        }
+        catch(UsernameAlreadyExistsException e)
+        {
+            Globals.showPopup("User with this username already exists", NotificationVariant.LUMO_ERROR, Notification.Position.BOTTOM_CENTER);
+        }
+        catch(EmailAlreadyExistsException e)
+        {
+            Globals.showPopup("User with this email already exists", NotificationVariant.LUMO_ERROR, Notification.Position.BOTTOM_CENTER);
+        }
     }
-    
+
+    private final UserService userService;
     private final FormLayout formLayout;
     private H1 signupTitle;
     private TextField usernameField;

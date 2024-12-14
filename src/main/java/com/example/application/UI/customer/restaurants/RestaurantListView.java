@@ -2,7 +2,7 @@ package com.example.application.UI.customer.restaurants;
 
 import com.example.application.UI.common.IView;
 import com.example.application.UI.customer.homepage.CMainMenuView;
-import com.example.application.backend.RestaurantService;
+import com.example.application.backend.restaurant.RestaurantService;
 import com.example.application.entities.restaurant.Restaurant;
 import com.example.application.globals.Globals;
 import com.vaadin.flow.component.Component;

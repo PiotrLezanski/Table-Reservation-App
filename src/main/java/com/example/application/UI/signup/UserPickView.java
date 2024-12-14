@@ -1,7 +1,9 @@
 package com.example.application.UI.signup;
 
 import com.example.application.UI.common.IView;
+import com.example.application.UI.customer.signup.CSignUpView;
 import com.example.application.UI.login.LoginView;
+import com.example.application.UI.owner.signup.OSignUpView;
 import com.example.application.globals.Globals;
 import com.example.application.globals.UserType;
 import com.vaadin.flow.component.ClickEvent;
@@ -75,11 +77,10 @@ public class UserPickView extends VerticalLayout implements IView {
 
     private void goButtonClicked(ClickEvent<Button> clicked)
     {
-        SignUpViewFactory signUpViewFactory = new SignUpViewFactory();
         switch(userType)
         {
-            case CUSTOMER -> UI.getCurrent().navigate(signUpViewFactory.createCustomerSignUpView().getClass()); 
-            case OWNER -> UI.getCurrent().navigate(signUpViewFactory.createOwnerSignUpView().getClass());
+            case CUSTOMER -> UI.getCurrent().navigate(CSignUpView.class);
+            case OWNER -> UI.getCurrent().navigate(OSignUpView.class);
             default -> Globals.showPopup("User type not valid", NotificationVariant.LUMO_ERROR, Notification.Position.BOTTOM_CENTER);
         }
     }

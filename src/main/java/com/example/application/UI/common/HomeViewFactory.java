@@ -3,6 +3,7 @@ package com.example.application.UI.common;
 import com.example.application.UI.customer.homepage.CHomePageView;
 import com.example.application.UI.owner.homepage.OHomePageView;
 import com.example.application.globals.Globals;
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -19,13 +20,13 @@ public class HomeViewFactory extends VerticalLayout
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             String role = authentication.getAuthorities().iterator().next().toString();
-            if (role.equals(Globals.ROLE_CUSTOMER)) 
+            if (role.equals("ROLE_" + Globals.ROLE_CUSTOMER))
             {
-                UI.getCurrent().navigate(CHomePageView.class);
-            } 
-            else if (role.equals(Globals.ROLE_OWNER)) 
+                UI.getCurrent().getPage().setLocation("customer-homepage");
+            }
+            else if (role.equals("ROLE_" + Globals.ROLE_OWNER))
             {
-                UI.getCurrent().navigate(OHomePageView.class);
+                UI.getCurrent().getPage().setLocation("owner-homepage");
             }
         }
     }
