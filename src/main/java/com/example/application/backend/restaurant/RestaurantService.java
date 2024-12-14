@@ -1,4 +1,4 @@
-package com.example.application.backend;
+package com.example.application.backend.restaurant;
 
 import com.example.application.entities.restaurant.Restaurant;
 import com.example.application.globals.RestaurantType;
@@ -57,8 +57,7 @@ public class RestaurantService
         }
         restaurantRepository.save(restaurant);
     }
-    
-    // delete after database connection
+
     @PostConstruct
     public void populateTestData()
     {
