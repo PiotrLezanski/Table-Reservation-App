@@ -20,7 +20,7 @@ a[highlight]
     color: white;
 }
 .home-page {
-    background: url('./images/restaurant_background.png') no-repeat center center fixed;
+    background: url('./images/background_2.png') no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
 }
@@ -51,6 +51,6 @@ a[highlight]
 
 .customer-about-us
 {
-    background: url('./images/about_us_background2.png') no-repeat center center;
+    background: url('./images/background_1.png') no-repeat center center;
     background-size: cover;
 }

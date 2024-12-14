@@ -53,7 +53,7 @@ public class OMainMenuView extends AppLayout implements IMainMenuView
     @Override
     public void initializeHeader()
     {
-        Image logo = new Image("images/foodie_logo.png", Globals.appName);
+        Image logo = new Image("images/Foodie_logo.png", Globals.appName);
         logo.setMaxWidth("120px");
         logo.setHeight("45px");
         logo.addClassNames("mx-s", "my-s");

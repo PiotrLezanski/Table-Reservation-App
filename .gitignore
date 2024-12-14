@@ -87,10 +87,7 @@ __pycache__/
 *.class
 
 # Images and videos
-*.jpg
-*.jpeg
 *.gif
-*.png
 *.bmp
 *.ico
 *.webp
