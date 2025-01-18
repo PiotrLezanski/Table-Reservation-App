@@ -4,10 +4,6 @@ import com.example.application.entities.user.CustomUser;
 import com.example.application.globals.exceptions.EmailAlreadyExistsException;
 import com.example.application.globals.exceptions.UsernameAlreadyExistsException;
 import jakarta.annotation.PostConstruct;
-import jakarta.validation.constraints.Email;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,7 +13,6 @@ import org.springframework.stereotype.Service;
 import static com.example.application.globals.Globals.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
