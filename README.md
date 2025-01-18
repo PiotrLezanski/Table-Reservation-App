@@ -1,35 +1,14 @@
 # Foodie
 
-your go-to app for crafting the perfect dining experience.
+app to reserve tables in restaurants.
 
-## Description
-
-Say farewell to the era of booking tables via phone and anxiously waiting for a waiter's response – with Foodie, the dining game has evolved.
-Now, securing a table at your favorite restaurant is a breeze, putting you in control of when, where, and how you indulge in your gastronomic delights.
-
-Key Features:
-
-📅 Effortless Reservations: No more long queues or uncertainty. Foodie empowers you to effortlessly secure a table at your preferred restaurant, 
-ensuring that your dining plans align with your schedule.
-
-🌟 Table Tailoring: Immerse yourself in the dining ambiance you crave. Foodie lets you pick your preferred table, whether it's a cozy corner for an intimate date or a lively spot for a group celebration. Your perfect setting, your way.
-
-🕰️ Time Precision: Time is a precious commodity, and Foodie respects that. Specify the exact time you want to dine, and witness the magic as your chosen restaurant prepares to welcome you at your preferred hour.
-
-🎁 Exclusive Additions: Elevate your Foodie experience with exclusive perks! Enjoy personalized recommendations based on your taste preferences, unlock special offers from partner restaurants, and get a sneak peek at mouthwatering menu highlights before you even set foot in the door.
-
-👨‍💼 Adding Your Restaurant: If you are a restaurant owner and want to add your place to Foodie, you can do this very easily! Just create a "Restaurant Owner" account on our site and let a broader audience savor the exceptional experience you have to offer..
-
-🤩 Something Extra: Foodie goes beyond the ordinary, adding that extra dash of delight to your culinary journey. Whether it's surprise discounts, chef's specials, or insider tips, Foodie keeps the excitement alive with every reservation.
-
-Download Foodie now and transform your dining escapades into unforgettable experiences. <br> 
-Because every meal should be a celebration, and with Foodie, you're always at the head of the table. <br> 
-Bon appétit! 🎉
+There is profile for customer and restaurant owners. Customers can scan their reservations and create new. 
+Owners can add new restaurants and manage their bookings.
 
 ## Boring stuff for developers
 
 ### UML
-![Foodie_UML](https://github.com/PiotrLezanski/Table-Reservation-App/assets/91131233/9824ac71-f9ee-4f2a-8cf0-ae87a7eaf841)
+![Foodie_UML](https://github.com/user-attachments/assets/9b401a68-cf90-4903-a5f7-335bcdf05e8b)
 
 
 ### Running the application
